@@ -1,0 +1,43 @@
+<form [formGroup]="controlPanelForm" (ngSubmit)="onSubmit()">
+	<div class="control-panel">
+		<h1>
+			<span> Control Panel </span>
+		</h1>
+	</div>
+	<div class="command-panel">
+		<label>
+			X:&nbsp;
+			<input matInput type="number" class="m-input" id="placeX" (input)="newXItem($any($event))" min="0" max="4" name="placeX" formControlName="placeX" />
+		</label>
+		<p></p>
+		<label>
+			Y:&nbsp;
+			<input type="number" class="m-input" id="placeY" matInput (input)="newYItem($any($event))" min="0" max="4" name="placeY" formControlName="placeY" />
+		</label>
+	</div>
+	<div class="command-panel">
+		<p>Select where should your Robot face?</p>
+		<label class="rad-label" *ngFor="let dir of directions">
+			<input type="radio" class="m-radio" name="robotDirection" (change)="newDirection($any($event))" formControlName="robotDirection" value="{{ dir }}" />
+			{{ dir }}&nbsp;&nbsp;
+			<br />
+		</label>
+	</div>
+	<div class="command-panel">
+		<p>Place the Robot</p>
+		<button type="submit" class="btn m-btn--pill rounded-button" value="Place">Place</button>
+	</div>
+	<div class="command-panel">
+		<p>Move one step</p>
+		<button type="button" class="btn m-btn--pill rounded-button" [disabled]="isFirstMove" (click)="clickMove($any($event))" value="Move">Move</button>
+	</div>
+	<div class="command-panel">
+		<p>Rotate the Robot</p>
+		<button type="button" class="btn m-btn--pill rounded-button" [disabled]="isFirstMove" (click)="rotateLeft($any($event))" value="Left">Left</button><br />
+		<button type="button" class="btn m-btn--pill rounded-button" [disabled]="isFirstMove" (click)="rotateRight($any($event))" value="Right">Right</button>
+	</div>
+	<div class="command-panel">
+		<p>Report the Robot's Position</p>
+		<button class="btn m-btn--pill rounded-button" (click)="clickReport($any($event))" [disabled]="isFirstMove" value="Report">Report</button>
+	</div>
+</form>
