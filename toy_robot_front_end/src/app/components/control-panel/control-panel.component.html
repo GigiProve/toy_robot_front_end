@@ -1,43 +1,42 @@
-<form [formGroup]="controlPanelForm" (ngSubmit)="onSubmit()">
-	<div class="control-panel">
-		<h1>
-			<span> Control Panel </span>
-		</h1>
+<div class="control-panel">
+	<form #placement="ngForm" (ngSubmit)="onSubmit(placement.value)">
+		<div class="row">
+			<div class="col-md-3">
+				<label for="xCoordinate"> Set X </label>
+				<input type="number" min="0" name="x" class="form-control" ngModel />
+			</div>
+			<div class="col-md-3">
+				<label for="yCoordinate"> Set Y </label>
+				<input type="number" min="0" name="y" class="form-control" ngModel />
+			</div>
+			<div class="col-md-3">
+				<label for="direction"> Set Direction </label>
+				<select name="direction" class="form-control" ngModel>
+					<option value="NORTH">NORTH</option>
+					<option value="EAST">EAST</option>
+					<option value="SOUTH">SOUTH</option>
+					<option value="WEST">WEST</option>
+				</select>
+			</div>
+			<div class="col-md-3">
+				<button type="submit" class="btn btn-primary">Place</button>
+			</div>
+		</div>
+	</form>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<button aria-label="Left" type="button" class="btn btn-primary" (click)="rotateLeft()">Left</button>
+			</div>
+			<div class="col-md-3">
+				<button aria-label="Right" type="button" class="btn btn-primary" (click)="rotateRight()">Right</button>
+			</div>
+			<div class="col-md-3">
+				<button aria-label="Move" type="button" class="btn btn-primary" (click)="movePosition()">Move</button>
+			</div>
+			<div class="col-md-3">
+				<button aria-label="Report" type="button" class="btn btn-primary" (click)="report()">Report</button>
+			</div>
+		</div>
 	</div>
-	<div class="command-panel">
-		<label>
-			X:&nbsp;
-			<input matInput type="number" class="m-input" id="placeX" (input)="newXItem($any($event))" min="0" max="4" name="placeX" formControlName="placeX" />
-		</label>
-		<p></p>
-		<label>
-			Y:&nbsp;
-			<input type="number" class="m-input" id="placeY" matInput (input)="newYItem($any($event))" min="0" max="4" name="placeY" formControlName="placeY" />
-		</label>
-	</div>
-	<div class="command-panel">
-		<p>Select where should your Robot face?</p>
-		<label class="rad-label" *ngFor="let dir of directions">
-			<input type="radio" class="m-radio" name="robotDirection" (change)="newDirection($any($event))" formControlName="robotDirection" value="{{ dir }}" />
-			{{ dir }}&nbsp;&nbsp;
-			<br />
-		</label>
-	</div>
-	<div class="command-panel">
-		<p>Place the Robot</p>
-		<button type="submit" class="btn m-btn--pill rounded-button" value="Place">Place</button>
-	</div>
-	<div class="command-panel">
-		<p>Move one step</p>
-		<button type="button" class="btn m-btn--pill rounded-button" [disabled]="isFirstMove" (click)="clickMove($any($event))" value="Move">Move</button>
-	</div>
-	<div class="command-panel">
-		<p>Rotate the Robot</p>
-		<button type="button" class="btn m-btn--pill rounded-button" [disabled]="isFirstMove" (click)="rotateLeft($any($event))" value="Left">Left</button><br />
-		<button type="button" class="btn m-btn--pill rounded-button" [disabled]="isFirstMove" (click)="rotateRight($any($event))" value="Right">Right</button>
-	</div>
-	<div class="command-panel">
-		<p>Report the Robot's Position</p>
-		<button class="btn m-btn--pill rounded-button" (click)="clickReport($any($event))" [disabled]="isFirstMove" value="Report">Report</button>
-	</div>
-</form>
+</div>
