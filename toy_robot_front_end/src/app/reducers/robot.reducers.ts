@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { Snackbar } from '../helpers/snackbar.helper';
 import { Directions, leftRotation, movePosition, placement, report, rightRotation, State } from '../models/models';
 
 const initialState: State = {
@@ -39,9 +40,16 @@ const _robotReducer = createReducer(
 	}),
 	on(report, (state) => {
 		const { x, y, direction } = state.robotPosition;
+		if (direction !== Directions.None) {
+			return {
+				...state,
+				log: [...state?.log!, 'Report', `Output: ${x}, ${y}, ${direction}`],
+			};
+		}
+		Snackbar.showErrorMessage('Place the robot first');
 		return {
 			...state,
-			log: [...state?.log!, 'Report', `Output: ${x}, ${y}, ${direction}`],
+			log: [...state?.log!],
 		};
 	})
 );

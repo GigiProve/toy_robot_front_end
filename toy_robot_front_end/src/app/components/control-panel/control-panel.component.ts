@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Snackbar } from 'src/app/helpers/snackbar.helper';
 import { chooseFirstState } from 'src/app/selectors/robot.selector';
 import { RobotService } from 'src/app/services/robot.service';
 import { leftRotation, movePosition, placement, report, rightRotation, RobotPosition, State } from '../../models/models';
@@ -22,7 +23,11 @@ export class ControlPanelComponent implements OnInit {
 	ngOnInit(): void {}
 
 	onSubmit(placeValue: RobotPosition) {
-		if ((placeValue.x || placeValue.x == 0) && (placeValue.y || placeValue.y == 0) && placeValue.direction) this.newPlace = this.robotService.place(placeValue);
+		if ((placeValue.x || placeValue.x == 0) && (placeValue.y || placeValue.y == 0) && placeValue.direction) {
+			this.newPlace = this.robotService.place(placeValue);
+		} else {
+			return Snackbar.showErrorMessage('Please fill in all fields');
+		}
 		if (this.newPlace) this.store.dispatch(placement({ robotPosition: this.newPlace }));
 	}
 

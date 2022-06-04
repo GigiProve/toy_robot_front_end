@@ -68,6 +68,6 @@ export class RobotService {
 	private isValidPosition(robotPosition: RobotPosition): boolean {
 		const { x, y, direction } = robotPosition;
 		const isDirectionValid = (direction && direction !== Directions.None) as boolean;
-		return isDirectionValid && x >= 0 && x <= X_INDEX && y >= 0 && y <= Y_INDEX;
+		return isDirectionValid && (!!x || x === 0) && x >= 0 && x <= X_INDEX && (!!y || y == 0) && y >= 0 && y <= Y_INDEX;
 	}
 }
