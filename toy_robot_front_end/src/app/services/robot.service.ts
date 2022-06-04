@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Snackbar } from '../helpers/snackbar.helper';
 import { DIRECTIONS, Directions, RobotPosition, X_INDEX, Y_INDEX } from '../models/models';
 
 @Injectable({
@@ -7,8 +8,10 @@ import { DIRECTIONS, Directions, RobotPosition, X_INDEX, Y_INDEX } from '../mode
 export class RobotService {
 	public place(robotPosition: RobotPosition): RobotPosition | undefined {
 		if (this.isValidPosition(robotPosition)) {
+			Snackbar.showSuccessMessage('Robot placed successfully');
 			return robotPosition;
 		}
+		Snackbar.showErrorMessage('Invalid position');
 		return undefined;
 	}
 
@@ -21,6 +24,7 @@ export class RobotService {
 			currentPosition.direction = DIRECTIONS[index];
 			return currentPosition;
 		}
+		Snackbar.showErrorMessage('Place the robot first');
 		return undefined;
 	}
 
@@ -33,6 +37,7 @@ export class RobotService {
 			currentPosition.direction = DIRECTIONS[index];
 			return currentPosition;
 		}
+		Snackbar.showErrorMessage('Place the robot first');
 		return undefined;
 	}
 
@@ -56,6 +61,7 @@ export class RobotService {
 		if (this.isValidPosition(newPlace)) {
 			return newPlace;
 		}
+		Snackbar.showErrorMessage('Invalid move');
 		return undefined;
 	}
 
