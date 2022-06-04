@@ -5,6 +5,7 @@ export enum Directions {
 	West = 'West',
 	North = 'North',
 	South = 'South',
+	None = 'None',
 }
 interface Coordinates {
 	x: number;
@@ -20,11 +21,18 @@ export interface State {
 	log?: string[];
 }
 
-export const placement = createAction('[Robot] Placement', props<{ robotPosition: RobotPosition }>());
-export const movePosition = createAction('[Robot] MovePosition', props<{ robotPosition: RobotPosition }>());
-export const leftRotation = createAction('[Robot] LeftRotation', props<{ robotPosition: RobotPosition }>());
-export const rightRotation = createAction('[Robot] RightRotation', props<{ robotPosition: RobotPosition }>());
-export const report = createAction('[Robot] Report');
-export const X_LENGTH: number = 5;
-export const Y_LENGTH: number = 5;
+export const ROBOT = {
+	[Directions.North]: '↑',
+	[Directions.East]: '→',
+	[Directions.South]: '↓',
+	[Directions.West]: '←',
+};
+
+export const placement = createAction('[Robot Component] Placement', props<{ robotPosition: RobotPosition }>());
+export const movePosition = createAction('[Robot Component] MovePosition', props<{ robotPosition: RobotPosition }>());
+export const leftRotation = createAction('[Robot Component] LeftRotation', props<{ robotPosition: RobotPosition }>());
+export const rightRotation = createAction('[Robot Component] RightRotation', props<{ robotPosition: RobotPosition }>());
+export const report = createAction('[Robot Component] Report');
+export const X_INDEX: number = 4;
+export const Y_INDEX: number = 4;
 export const DIRECTIONS: Directions[] = [Directions.North, Directions.East, Directions.South, Directions.West]; //clockwise order

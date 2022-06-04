@@ -1,25 +1,27 @@
 <div class="control-panel">
 	<form #placement="ngForm" (ngSubmit)="onSubmit(placement.value)">
-		<div class="row">
-			<div class="col-md-3">
-				<label for="xCoordinate"> Set X </label>
-				<input type="number" min="0" name="x" class="form-control" ngModel />
-			</div>
-			<div class="col-md-3">
-				<label for="yCoordinate"> Set Y </label>
-				<input type="number" min="0" name="y" class="form-control" ngModel />
-			</div>
-			<div class="col-md-3">
-				<label for="direction"> Set Direction </label>
-				<select name="direction" class="form-control" ngModel>
-					<option value="NORTH">NORTH</option>
-					<option value="EAST">EAST</option>
-					<option value="SOUTH">SOUTH</option>
-					<option value="WEST">WEST</option>
-				</select>
-			</div>
-			<div class="col-md-3">
-				<button type="submit" class="btn btn-primary">Place</button>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<label for="xCoordinate"> Set X </label>
+					<input type="number" min="0" name="x" class="form-control" ngModel />
+				</div>
+				<div class="col-md-3">
+					<label for="yCoordinate"> Set Y </label>
+					<input type="number" min="0" name="y" class="form-control" ngModel />
+				</div>
+				<div class="col-md-3">
+					<label for="direction"> Set Direction </label>
+					<select name="direction" class="form-control" ngModel>
+						<option value="North">NORTH</option>
+						<option value="East">EAST</option>
+						<option value="South">SOUTH</option>
+						<option value="West">WEST</option>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<button type="submit" class="btn btn-primary" style="margin-top: 20px">Place</button>
+				</div>
 			</div>
 		</div>
 	</form>

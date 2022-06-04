@@ -22,7 +22,7 @@ export class ControlPanelComponent implements OnInit {
 	ngOnInit(): void {}
 
 	onSubmit(placeValue: RobotPosition) {
-		if (placeValue.x && placeValue.y && placeValue.direction) this.newPlace = this.robotService.place(placeValue);
+		if ((placeValue.x || placeValue.x == 0) && (placeValue.y || placeValue.y == 0) && placeValue.direction) this.newPlace = this.robotService.place(placeValue);
 		if (this.newPlace) this.store.dispatch(placement({ robotPosition: this.newPlace }));
 	}
 

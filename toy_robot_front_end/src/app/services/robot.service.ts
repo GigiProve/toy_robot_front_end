@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DIRECTIONS, Directions, RobotPosition, X_LENGTH, Y_LENGTH } from '../models/models';
+import { DIRECTIONS, Directions, RobotPosition, X_INDEX, Y_INDEX } from '../models/models';
 
 @Injectable({
 	providedIn: 'root',
@@ -61,6 +61,7 @@ export class RobotService {
 
 	private isValidPosition(robotPosition: RobotPosition): boolean {
 		const { x, y, direction } = robotPosition;
-		return !!direction && x >= 0 && x < X_LENGTH && y >= 0 && y < Y_LENGTH;
+		const isDirectionValid = (direction && direction !== Directions.None) as boolean;
+		return isDirectionValid && x >= 0 && x <= X_INDEX && y >= 0 && y <= Y_INDEX;
 	}
 }
